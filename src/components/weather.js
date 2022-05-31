@@ -39,7 +39,13 @@ export default function Weather(){
                 console.log(error);
             })
     }, []);
-    let icon = "https://cdn-icons.flaticon.com/png/128/3570/premium/3570489.png?token=exp=1654008763~hmac=260bdb7fe3544a0e697ce9ff7a555eb0";
+    let icon;
+    if(weather === "맑음") icon = "https://cdn-icons.flaticon.com/png/128/3570/premium/3570489.png?token=exp=1654008763~hmac=260bdb7fe3544a0e697ce9ff7a555eb0";
+    else if(weather === "구름많음") icon = "https://cdn-icons-png.flaticon.com/128/2932/2932445.png";
+    else if(weather === "흐림") icon = "https://cdn-icons.flaticon.com/png/128/2441/premium/2441600.png?token=exp=1654009171~hmac=4588d257efb5b6d8ed844d295eab170b";
+    else if(weather === "비") icon = "https://cdn-icons-png.flaticon.com/128/3313/3313888.png";
+    else if(weather === "비/눈") icon = "https://cdn-icons-png.flaticon.com/512/727/727806.png";
+    else if(weather === "눈") icon = "https://cdn-icons-png.flaticon.com/128/727/727809.png";
     return(
         <main>
             <h1>지금 강서구는... <img src={icon}/>{weather}</h1>
