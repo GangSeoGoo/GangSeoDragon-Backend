@@ -3,20 +3,21 @@ import axios from 'axios';
 import { useState } from "react";
 
 export default function Weather(){
-    const [weather, setWeather] = useState([]);
-
-    //axois 통신
+    const [weather, setWeather] = useState(null);
+    //axios 통신
     useEffect(() => {
-        axios.get('/api/weather')
+        axios.get('api/weather')
             .then(function(response) {
-                setWeather(response.data);
-                console.log(response);
-            })
+                return response;
+            }).then(data=>{
+                const item = data.data.response.body.items.item[24];
+                setWeather(item.fcstValue);
+        })
             .catch(function(error) {
-                console.log("실패");
+                console.log(error);
             })
     }, []);
     return(
-        <h1>{weather}</h1>
+        <h1>{weather}ºC</h1>
     )
 }

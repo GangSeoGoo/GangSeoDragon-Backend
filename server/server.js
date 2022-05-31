@@ -6,10 +6,8 @@ const port =process.env.PORT || 3001;
 
 
 app.use(bodyParser.json());
-app.use('/', (req, res)=>{
-    res.sendFile('App.js');
-})
-app.use('/api/weather', route)
+app.use('/', route)
+app.get('/api/weather', route)
 
 app.listen(port, ()=>{
     console.log(`express is running on ${port}`);
