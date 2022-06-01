@@ -9,6 +9,7 @@ app.use(bodyParser.json());
 app.use('/', route)
 app.get('/api/weather', route)
 
+
 app.listen(port, ()=>{
     console.log(`express is running on ${port}`);
 })
