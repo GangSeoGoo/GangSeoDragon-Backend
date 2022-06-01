@@ -10,9 +10,9 @@ router.get('/', (req, res)=>{
 app.use(cors())
 //오늘 날짜
 const today = new Date();
-const newtoday = today.getMonth()+1>10?
-    String(today.getFullYear()) + (today.getMonth()+1) + today.getDate():
-    String(today.getFullYear()) + 0 +(today.getMonth()+1) + today.getDate();
+const newmonth = today.getMonth()+1>10?String(today.getMonth()+1):String("0" +(today.getMonth()+1))
+const newdate = today.getDate()>10?today.getDate():String("0" + today.getDate());
+const newtoday = today.getFullYear() + newmonth + newdate;
 
 //보도시각
 const newhours = today.getHours()>9?today.getHours():"0"+today.getHours();
@@ -24,5 +24,5 @@ router.get('/api/weather', (req, response) => {
         response.send(body)
     })
 });
-
+console.log(url);
 module.exports = router;

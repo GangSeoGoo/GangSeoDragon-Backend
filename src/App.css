@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100&display=swap');
 
 *{
     margin: 0 auto;
     box-sizing: border-box;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 header{
@@ -27,10 +29,29 @@ nav{
 a{
     text-decoration-line : none;
     color: #FFFFFF;
-    border-left: 1px solid black;
+    border-left: 1px solid white;
     flex: 1;
 }
 
 a:nth-child(1){
     border-left: none;
+}
+
+main{
+    text-align: center;
+}
+
+.wea--title{
+    display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.wea--icon{
+    width: 128px;
+    height: 128px;
+}
+
+.wea--info{
+    font-size: 8px;
 }
