@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import Header from "./header";
+import Nav from "./nav";
 
 function Main(){
     const [weather, setWeather] = useState(null); //날씨
@@ -52,14 +53,8 @@ function Main(){
 
     return(
         <div>
-            <header>
-                <img src="../images/gangseo.png" className="logo" alt={"이미지 로딩중..."}/>
-            </header>
-            <nav>
-                <Link to={"/about"}>날씨별 관광지 추천</Link>
-                <Link to={"/about"}>위치별 관광지 추천</Link>
-                <Link to={"/about"}>특산물 소개</Link>
-            </nav>
+            <Header/>
+            <Nav/>
             <main>
                 <h2 className="wea--title">지금 강서구는...</h2><br/>
                 <img src={icon} className="wea--icon" alt={"날씨 아이콘 로딩중..."}/><br/>

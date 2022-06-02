@@ -3,6 +3,7 @@ import './App.css';
 import Main from "./components/Main"
 import About from './components/About'
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Location from "./components/Location";
 
 class App extends React.Component {
 
@@ -13,6 +14,7 @@ class App extends React.Component {
             <Routes>
                 <Route path={"/"} element={<Main />}></Route>
                 <Route path={"/about"} element={<About />}></Route>
+                <Route path={"/location"} element={<Location/>}></Route>
             </Routes>
           </BrowserRouter>
       </div>
