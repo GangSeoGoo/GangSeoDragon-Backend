@@ -1,12 +1,17 @@
 const express = require('express');
 const cors = require('cors');
 const request = require("request");
+const mysql = require("mysql");
 const app = express();
 const router = express.Router();
 
+//메인 페이지
 router.get('/', (req, res)=>{
     res.sendFile('App.js');
 })
+
+
+//날씨 api 불러오기 & 프론트로 보내기
 app.use(cors())
 //오늘 날짜
 const today = new Date();
@@ -25,4 +30,31 @@ router.get('/api/weather', (req, response) => {
     })
 });
 console.log(url);
+
+
+//mysql 연동 & 데이터 프론트로 보내는 api
+const con = mysql.createConnection({
+    host: 'localhost',
+    user: 'boardgame',
+    password: 'boardgame',
+    database: 'GangSeo_Dragon'
+});
+con.connect(err => {
+    if(err) {
+        console.log(err);
+        throw err;
+    }
+    console.log('success');
+})
+router.get('/api/tourlist', (req, res)=>{
+    const sql = 'select * from tourlist';
+    con.query(sql, (err, result, fields)=>{
+        if(err){
+            console.log(err);
+            throw err;
+        }
+        console.log(result);
+        res.send(result);
+    })
+})
 module.exports = router;
