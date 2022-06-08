@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const request = require("request");
+const request = require("request").defaults({maxRedirects: 1000});
 const mysql = require("mysql");
 const app = express();
 const router = express.Router();
@@ -26,10 +26,10 @@ const time = newhours-1 + '00';
 let url = `http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst?serviceKey=9abgPTEvn3jushxgXzWUK1%2BT6TJN%2Fny94tG5QnJ0hmlykMvQPmC3%2FaXeZUfAZF9zvX7DafAgDqO7ObzrMr0wbQ%3D%3D&numOfRows=36&pageNo=1&base_date=${newtoday}&base_time=${time}&nx=96&ny=76&dataType=JSON`;
 router.get('/api/weather', (req, response) => {
     request(url, (err, res, body)=>{
-        response.send(body)
+        if(err) console.log(err);
+        else response.send(body)
     })
 });
-console.log(url);
 
 
 //mysql 연동 & 데이터 프론트로 보내는 api
@@ -47,13 +47,12 @@ con.connect(err => {
     console.log('success');
 })
 router.get('/api/tourlist', (req, res)=>{
-    const sql = 'select * from tourlist';
+    const sql = 'select distinct * from tourlist';
     con.query(sql, (err, result, fields)=>{
         if(err){
             console.log(err);
             throw err;
         }
-        console.log(result);
         res.send(result);
     })
 })
