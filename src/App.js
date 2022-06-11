@@ -3,7 +3,7 @@ import './App.css';
 import Main from "./components/Main"
 import About from './components/About'
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Location from "./components/Location";
+import Map from "./components/map";
 import Tourlist from "./components/Tourlist";
 
 class App extends React.Component {
@@ -15,7 +15,7 @@ class App extends React.Component {
             <Routes>
                 <Route path={"/"} element={<Main />}></Route>
                 <Route path={"/about"} element={<About />}></Route>
-                <Route path={"/location"} element={<Location/>}></Route>
+                <Route path={"/location"} element={<Map/>}></Route>
                 <Route path={"/tourlist"} element={<Tourlist/>}></Route>
             </Routes>
           </BrowserRouter>

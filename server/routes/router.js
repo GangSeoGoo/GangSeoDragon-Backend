@@ -47,7 +47,7 @@ con.connect(err => {
     console.log('success');
 })
 router.get('/api/tourlist', (req, res)=>{
-    const sql = 'select distinct * from tourlist';
+    const sql = 'select * from tourlist order by tourNum';
     con.query(sql, (err, result, fields)=>{
         if(err){
             console.log(err);

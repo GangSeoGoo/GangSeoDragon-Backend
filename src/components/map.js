@@ -3,7 +3,7 @@ import {useEffect} from "react";
 import KakaoMapScript from "./kakaomapscript";
 import Nav from "./nav";
 
-function Location(){
+function Map(){
     useEffect(() => {
         KakaoMapScript();
     }, []);
@@ -18,4 +18,4 @@ function Location(){
         </div>
     )
 }
-export default Location;
+export default Map;

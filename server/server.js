@@ -6,7 +6,7 @@ const port =process.env.PORT || 3001;
 
 
 app.use(bodyParser.json());
-app.use('/', route)
+app.get('/', route)
 app.get('/api/weather', route)
 app.get('/api/tourlist', route);
 

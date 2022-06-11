@@ -1,4 +1,4 @@
-export const markerdata = [
+export default[
     {
         title: "보개산",
         lat: 35.146658,
