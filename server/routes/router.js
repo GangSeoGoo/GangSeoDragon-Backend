@@ -32,28 +32,28 @@ router.get('/api/weather', (req, response) => {
 });
 
 
-//mysql 연동 & 데이터 프론트로 보내는 api
-const con = mysql.createConnection({
-    host: 'localhost',
-    user: 'boardgame',
-    password: 'boardgame',
-    database: 'GangSeo_Dragon'
-});
-con.connect(err => {
-    if(err) {
-        console.log(err);
-        throw err;
-    }
-    console.log('success');
-})
-router.get('/api/tourlist', (req, res)=>{
-    const sql = 'select * from tourlist order by tourNum';
-    con.query(sql, (err, result, fields)=>{
-        if(err){
-            console.log(err);
-            throw err;
-        }
-        res.send(result);
-    })
-})
+// //mysql 연동 & 데이터 프론트로 보내는 api
+// const con = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'boardgame',
+//     password: 'boardgame',
+//     database: 'GangSeo_Dragon'
+// });
+// con.connect(err => {
+//     if(err) {
+//         console.log(err);
+//         throw err;
+//     }
+//     console.log('success');
+// })
+// router.get('/api/tourlist', (req, res)=>{
+//     const sql = 'select * from tourlist order by tourNum';
+//     con.query(sql, (err, result, fields)=>{
+//         if(err){
+//             console.log(err);
+//             throw err;
+//         }
+//         res.send(result);
+//     })
+// })
 module.exports = router;

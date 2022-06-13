@@ -1,21 +1,16 @@
-import Header from "./header";
-import {useEffect} from "react";
+    import React, { useEffect } from 'react';
 import KakaoMapScript from "./kakaomapscript";
-import Nav from "./nav";
 
-function Map(){
+export default function Map() {
+
     useEffect(() => {
         KakaoMapScript();
     }, []);
-    return(
-        <div>
-            <Header/>
-            <Nav/>
-            <div id='myMap' style={{
-                width: '100vw',
-                height: '100vh'
-            }}></div>
-        </div>
-    )
+    
+    return (
+        <div id='myMap' style={{
+            width: '100vw',
+            height: '100vh'
+        }}></div>
+    );
 }
-export default Map;
