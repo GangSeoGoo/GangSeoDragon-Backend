@@ -55,3 +55,21 @@ main{
 .wea--info{
     font-size: 8px;
 }
+.iwBox {
+    display: flex;
+    width: 200px;
+    height: 150px;
+    background-color: rgb(255, 255, 255);
+    border: 3px solid #000;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+.iwTitle {
+    width: 194px;
+    border-bottom: 3px solid #000;
+}
+.iwImage {
+    width: 194px;
+    height: 119px;
+}
