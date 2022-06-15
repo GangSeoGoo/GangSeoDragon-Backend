@@ -5,11 +5,6 @@ const mysql = require("mysql");
 const app = express();
 const router = express.Router();
 
-//메인 페이지
-router.get('/', (req, res)=>{
-    res.sendFile('App.js');
-})
-
 
 //날씨 api 불러오기 & 프론트로 보내기
 app.use(cors())
@@ -34,9 +29,9 @@ router.get('/api/weather', (req, response) => {
 
 //mysql 연동 & 데이터 프론트로 보내는 api
 const con = mysql.createConnection({
-    host: 'localhost',
-    user: 'boardgame',
-    password: 'boardgame',
+    host: '10.150.149.114',
+    user: 'gangseodragon',
+    password: 'gangseodragon',
     database: 'GangSeo_Dragon'
 });
 con.connect(err => {
