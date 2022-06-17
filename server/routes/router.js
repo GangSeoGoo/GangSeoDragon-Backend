@@ -5,11 +5,6 @@ const mysql = require("mysql");
 const app = express();
 const router = express.Router();
 
-//메인 페이지
-router.get('/', (req, res)=>{
-    res.sendFile('App.js');
-})
-
 
 //날씨 api 불러오기 & 프론트로 보내기
 app.use(cors())
@@ -32,6 +27,7 @@ router.get('/api/weather', (req, response) => {
 });
 
 
+<<<<<<< HEAD
 // //mysql 연동 & 데이터 프론트로 보내는 api
 // const con = mysql.createConnection({
 //     host: 'localhost',
@@ -56,4 +52,30 @@ router.get('/api/weather', (req, response) => {
 //         res.send(result);
 //     })
 // })
+=======
+//mysql 연동 & 데이터 프론트로 보내는 api
+const con = mysql.createConnection({
+    host: '10.150.149.114',
+    user: 'gangseodragon',
+    password: 'gangseodragon',
+    database: 'GangSeo_Dragon'
+});
+con.connect(err => {
+    if(err) {
+        console.log(err);
+        throw err;
+    }
+    console.log('success');
+})
+router.get('/api/tourlist', (req, res)=>{
+    const sql = 'select * from tourlist order by tourNum';
+    con.query(sql, (err, result, fields)=>{
+        if(err){
+            console.log(err);
+            throw err;
+        }
+        res.send(result);
+    })
+})
+>>>>>>> e3c037ebe5b4d8168549af7ba11a19accde4fa09
 module.exports = router;

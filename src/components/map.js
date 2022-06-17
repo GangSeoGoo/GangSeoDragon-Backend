@@ -1,5 +1,7 @@
-    import React, { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import KakaoMapScript from "./kakaomapscript";
+import Header from './header';
+import Nav from './nav';
 
 export default function Map() {
 
@@ -8,9 +10,15 @@ export default function Map() {
     }, []);
     
     return (
-        <div id='myMap' style={{
-            width: '100vw',
-            height: '100vh'
-        }}></div>
+        <div>
+            <Header />
+            <Nav />
+            <div id='myMap' style={{
+                width: '100vw',
+                height: '100vh'
+                }}>
+            </div>
+        </div>
+        
     );
 }
