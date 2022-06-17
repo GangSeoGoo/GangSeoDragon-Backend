@@ -1,56 +1,61 @@
-import {useEffect, useState} from "react";
+import { Fragment, useEffect, useState } from "react";
 import axios from "axios";
 import Nav from "./nav";
 import Header from "./header";
 
-function Tourlist(){
-    const selEl = document.querySelector("p");
+function Tourlist() {
+    const selEl = document.querySelector(".innerdiv");
     const [tourlist, setTourlist] = useState(null);
 
-    useEffect(()=>{
+    useEffect(() => {
         axios.get('api/tourlist')
             .then(response => {
                 return response
             }).then(data => {
                 setTourlist(data.data);
-        })
+            })
     }, [])
-    useEffect(()=>{
-        let timer = setTimeout(() => {
-            selEl.innerHTML = "";
-            for(let i=0;i<tourlist.length;i++) {
-                selEl.innerHTML += `<p>${tourlist[i].tourNum}</p>`
-                selEl.innerHTML += `<p>${tourlist[i].tourName}</p>`
-                selEl.innerHTML += `<p>${tourlist[i].tourExplain}</p>`
-                selEl.innerHTML += `<img src="${tourlist[i].tourImage}" />`
-            }
-        }, 100)
-    })
-    function sortOut(){
+    const timer = setTimeout(() => {
+        for (let i = 0; i < tourlist.length; i++) {
+            selEl.innerHTML += `<div class="tourlist--div" id="tourNum" data-columns="${tourlist[i].tourNum}">
+                <p>${tourlist[i].tourNum}</p>
+                <p>${tourlist[i].tourName}</p>
+                <p>${tourlist[i].tourExplain}</p>
+                <img src="${tourlist[i].tourImage}" alt="icon" />
+            </div>`
+        }
+    }, 100)
+    function sortOut() {
         selEl.innerHTML = "";
-        for(let i=0;i<tourlist.length;i++){
-            if(tourlist[i].outside === 1){
-                selEl.innerHTML += `<p>${tourlist[i].tourNum}</p>`
-                selEl.innerHTML += `<p>${tourlist[i].tourName}</p>`
-                selEl.innerHTML += `<p>${tourlist[i].tourExplain}</p>`
-                selEl.innerHTML += `<img src="${tourlist[i].tourImage}" />`
+        for (let i = 0; i < tourlist.length; i++) {
+            if (tourlist[i].outside === 1) {
+                selEl.innerHTML += `<div class="tourlist--div" id="tourNum" data-columns="${tourlist[i].tourNum}">
+                    <p>${tourlist[i].tourNum}</p>
+                    <p>${tourlist[i].tourName}</p>
+                    <p>${tourlist[i].tourExplain}</p>
+                    <img src="${tourlist[i].tourImage}" alt="icon" />
+                    <button onclick=getTourNum()>리뷰 남기기</button>
+                </div>`
             }
         }
     }
-    function sortIn(){
+    function sortIn() {
         selEl.innerHTML = "";
-        for(let i=0;i<tourlist.length;i++){
-            if(tourlist[i].outside === 0){
-                selEl.innerHTML += `<p>${tourlist[i].tourNum}</p>`
-                selEl.innerHTML += `<p>${tourlist[i].tourName}</p>`
-                selEl.innerHTML += `<p>${tourlist[i].tourExplain}</p>`
-                selEl.innerHTML += `<img src="${tourlist[i].tourImage}" />`
+        for (let i = 0; i < tourlist.length; i++) {
+            if (tourlist[i].outside === 0) {
+                selEl.innerHTML += `<div class="tourlist--div" id="tourNum" data-columns="${tourlist[i].tourNum}">
+                    <p>${tourlist[i].tourNum}</p>
+                    <p>${tourlist[i].tourName}</p>
+                    <p>${tourlist[i].tourExplain}</p>
+                    <img src="${tourlist[i].tourImage}" alt="icon" />
+                    <button onclick=getTourNum()>리뷰 남기기</button>
+                </div>`
             }
         }
     }
-    return(
+    return (
         <div>
-            <Header/>
+            <Header />
             <Nav />
             <details>
                 <summary>정렬</summary>
@@ -59,7 +64,7 @@ function Tourlist(){
                     <button onClick={sortIn}>실내</button>
                 </ul>
             </details>
-            <p></p>
+            <div className="innerdiv"></div>
         </div>
     )
 }

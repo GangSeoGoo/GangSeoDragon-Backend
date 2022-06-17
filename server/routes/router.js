@@ -6,15 +6,15 @@ const app = express();
 const router = express.Router();
 
 
-//날씨 api 불러오기 & 프론트로 보내기
+//?궇?뵪 api 遺덈윭?삤湲? & ?봽濡좏듃濡? 蹂대궡湲?
 app.use(cors())
-//오늘 날짜
+//?삤?뒛 ?궇吏?
 const today = new Date();
 const newmonth = today.getMonth()+1>10?String(today.getMonth()+1):String("0" +(today.getMonth()+1))
 const newdate = today.getDate()>10?today.getDate():String("0" + today.getDate());
 const newtoday = today.getFullYear() + newmonth + newdate;
 
-//보도시각
+//蹂대룄?떆媛?
 const newhours = today.getHours()>9?today.getHours():"0"+today.getHours();
 const time = newhours-1 + '00';
 
@@ -27,9 +27,9 @@ router.get('/api/weather', (req, response) => {
 });
 
 
-//mysql 연동 & 데이터 프론트로 보내는 api
+//mysql ?뿰?룞 & ?뜲?씠?꽣 ?봽濡좏듃濡? 蹂대궡?뒗 api
 const con = mysql.createConnection({
-    host: '10.150.149.114',
+    host: 'localhost',
     user: 'gangseodragon',
     password: 'gangseodragon',
     database: 'GangSeo_Dragon'
@@ -49,6 +49,29 @@ router.get('/api/tourlist', (req, res)=>{
             throw err;
         }
         res.send(result);
+    })
+})
+router.post('/api/postReview', (req, res)=>{
+    const data = req.body;
+    const setSql = `select tourNum from tourlist where tourName = '${data.tourName}'`;
+    let tnum;
+    const today = new Date();
+    const nowDate = `${today.getFullYear()}/${today.getMonth()+1}/${today.getDate()}/${today.getHours()}/${today.getMinutes()}/${today.getSeconds()}`;
+    con.query(setSql, (err, result, fields)=>{
+        if(err){
+            console.log(err);
+            throw err;
+        }
+        console.log(result);
+        tnum = result;
+    })
+    const inSql = `insert into review values(${tnum}, '${data.reviewText}', '${nowDate}', ${data.reviewStar}`
+    con.query(inSql, (err, result, fields)=>{
+        if(err){
+            console.log(err);
+            throw err;
+        }
+        res.send('success');
     })
 })
 module.exports = router;

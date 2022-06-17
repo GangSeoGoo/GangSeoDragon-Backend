@@ -6,6 +6,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Map from "./components/map";
 import Tourlist from "./components/Tourlist";
 import Fruits from "./components/fruits";
+import Review from './components/review';
 
 class App extends React.Component {
 
@@ -18,7 +19,8 @@ class App extends React.Component {
                 <Route path={"/about"} element={<About />}></Route>
                 <Route path={"/location"} element={<Map/>}></Route>
                 <Route path={"/tourlist"} element={<Tourlist/>}></Route>
-                <Route path="/fruits" element={<Fruits/>}></Route>
+                <Route path={"/fruits"} element={<Fruits/>}></Route>
+                <Route path={"/review"} element={<Review />}></Route>
             </Routes>
           </BrowserRouter>
       </div>
