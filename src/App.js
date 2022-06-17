@@ -7,9 +7,8 @@ import Map from "./components/map";
 import Tourlist from "./components/Tourlist";
 import Fruits from "./components/fruits";
 
-class App extends React.Component {
+function App(){
 
-  render() {
     return (
       <div className="App">
           <BrowserRouter>
@@ -18,13 +17,13 @@ class App extends React.Component {
                 <Route path={"/about"} element={<About />}></Route>
                 <Route path={"/location"} element={<Map/>}></Route>
                 <Route path={"/tourlist"} element={<Tourlist/>}></Route>
-                <Route path="/fruits" element={<Fruits/>}></Route>
+                <Route path={"/fruits"} element={<Fruits/>}></Route>
             </Routes>
           </BrowserRouter>
       </div>
     );
     ;
-  }
+
 }
 
 export default App;

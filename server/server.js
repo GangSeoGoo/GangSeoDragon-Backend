@@ -12,6 +12,6 @@ app.get('/', (req, res)=>{
 app.get('/api/weather', route);
 app.get('/api/tourlist', route);
 
-app.listen(3000, ()=>{
+app.listen(3002, ()=>{
     console.log(`express is running on 3000port`);
 })

@@ -1,13 +1,18 @@
-import React from "react";
+import React from 'react';
+import Header from "./header"
+import Nav from "./nav"
+import Fruitsitem from "./fruitsitem"
+import data from "../fruitsdata"
 
-export default function Fruits(props){
-    return(
-        <div className="fruit--div">
-            <img src={props.img} className="fruit--img"></img>
-            <div className="fruit--content">
-                <h1 className="fruit--name">{props.name}</h1>
-                <span className="fruit--comment">{props.comment}</span>
-            </div>
+export default function Fruits(){
+  const fruit = data.map((item) => {
+    return <Fruitsitem {...item}/>;
+  });
+    return (
+        <div className="App">
+          <Header />
+          <Nav />
+          <section className='fruits'>{fruit}</section>
         </div>
-    )
+    );
 }
