@@ -15,12 +15,12 @@ class App extends React.Component {
       <div className="App">
           <BrowserRouter>
             <Routes>
-                <Route path={"/"} element={<Main />}></Route>
-                <Route path={"/about"} element={<About />}></Route>
-                <Route path={"/location"} element={<Map/>}></Route>
-                <Route path={"/tourlist"} element={<Tourlist/>}></Route>
-                <Route path={"/fruits"} element={<Fruits/>}></Route>
-                <Route path={"/review"} element={<Review />}></Route>
+                <Route path="/" element={<Main />}></Route>
+                <Route path="/about" element={<About />}></Route>
+                <Route path="/location" element={<Map/>}></Route>
+                <Route path="/tourlist" element={<Tourlist/>}></Route>
+                <Route path="/fruits" element={<Fruits/>}></Route>
+                <Route path="/review" element={<Review/>}></Route>
             </Routes>
           </BrowserRouter>
       </div>

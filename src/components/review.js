@@ -23,7 +23,9 @@ function Review(){
             }
             axios.post('/api/postReview', reviewData)
             .then((response)=>{
-                alert(response);
+                return response;
+            }).then(data => {
+                console.log(data.data);
             }).catch((error)=>{
                 console.log(error);
             })

@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 app.use(bodyParser.json());
+
 app.use(express.static(path.join(__dirname, '../build/')));
 app.get('/', (req, res)=>{
     res.sendFile(__dirname, '../build/index.html');
