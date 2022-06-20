@@ -2,10 +2,12 @@ import { Fragment, useEffect, useState } from "react";
 import axios from "axios";
 import Nav from "./nav";
 import Header from "./header";
+import { useNavigate } from 'react-router-dom'
 
 function Tourlist() {
     const selEl = document.querySelector(".innerdiv");
     const [tourlist, setTourlist] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get('api/tourlist')
@@ -15,26 +17,28 @@ function Tourlist() {
                 setTourlist(data.data);
             })
     }, [])
+
     const timer = setTimeout(() => {
+        selEl.innerHTML = "";
         for (let i = 0; i < tourlist.length; i++) {
-            selEl.innerHTML += `<div class="tourlist--div" id="tourNum" data-columns="${tourlist[i].tourNum}">
+            selEl.innerHTML += `<div id="tourNum" data-columns=${tourlist[i].tourNum}>
                 <p>${tourlist[i].tourNum}</p>
                 <p>${tourlist[i].tourName}</p>
                 <p>${tourlist[i].tourExplain}</p>
                 <img src="${tourlist[i].tourImage}" alt="icon" />
             </div>`
         }
-    }, 100)
+    }, 100);
+
     function sortOut() {
         selEl.innerHTML = "";
         for (let i = 0; i < tourlist.length; i++) {
             if (tourlist[i].outside === 1) {
-                selEl.innerHTML += `<div class="tourlist--div" id="tourNum" data-columns="${tourlist[i].tourNum}">
+                selEl.innerHTML += `<div id="tourNum" data-columns="${tourlist[i].tourNum}">
                     <p>${tourlist[i].tourNum}</p>
                     <p>${tourlist[i].tourName}</p>
                     <p>${tourlist[i].tourExplain}</p>
                     <img src="${tourlist[i].tourImage}" alt="icon" />
-                    <button onclick=getTourNum()>리뷰 남기기</button>
                 </div>`
             }
         }
@@ -43,12 +47,11 @@ function Tourlist() {
         selEl.innerHTML = "";
         for (let i = 0; i < tourlist.length; i++) {
             if (tourlist[i].outside === 0) {
-                selEl.innerHTML += `<div class="tourlist--div" id="tourNum" data-columns="${tourlist[i].tourNum}">
+                selEl.innerHTML += `<div id="tourNum" data-columns="${tourlist[i].tourNum}">
                     <p>${tourlist[i].tourNum}</p>
                     <p>${tourlist[i].tourName}</p>
                     <p>${tourlist[i].tourExplain}</p>
                     <img src="${tourlist[i].tourImage}" alt="icon" />
-                    <button onclick=getTourNum()>리뷰 남기기</button>
                 </div>`
             }
         }

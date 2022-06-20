@@ -53,23 +53,15 @@ router.get('/api/tourlist', (req, res)=>{
 })
 router.post('/api/postReview', (req, res)=>{
     const data = req.body;
-    const setSql = `select tourNum from tourlist where tourName = '${data.tourName}'`;
-    con.query(setSql, (err, result, fields)=>{
-        if(err){
+    const today = new Date();
+    const nowDate = `${today.getFullYear()}/${today.getMonth()+1}/${today.getDate()}/${today.getHours()}/${today.getMinutes()}/${today.getSeconds()}`;
+    const inSql = `insert into review(tourNum, reviewText, reviewDate, reviewStar) values(${data.tourNum}, '${data.reviewText}', '${nowDate}', ${data.reviewStar})`
+    con.query(inSql, (err, result, fields)=>{
+         if(err){
             console.log(err);
             throw err;
         }
-        const num = result;
-        const today = new Date();
-        const nowDate = `${today.getFullYear()}/${today.getMonth()+1}/${today.getDate()}/${today.getHours()}/${today.getMinutes()}/${today.getSeconds()}`;
-        const inSql = `insert into review(tourNum, reviewText, reviewDate, reviewStar) values(${num[0].tourNum}, '${data.reviewText}', '${nowDate}', ${data.reviewStar})`
-        con.query(inSql, (err, result, fields)=>{
-            if(err){
-                console.log(err);
-                throw err;
-            }
-            res.send('success');
-        })
+        res.send('success');
     })
 })
 module.exports = router;
