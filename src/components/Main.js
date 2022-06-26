@@ -12,7 +12,7 @@ function Main(){
     //axios 통신
     useEffect(() => {
         axios.get('/api/weather')
-            .then(function(response) {
+            .then((response)=> {
                 return response;
             }).then(data=>{
                 const item = data.data.response.body.items;
@@ -36,7 +36,7 @@ function Main(){
                 //강수량
                 item.item[12].fcstValue==="강수없음"?setPrecipitation(0):setPrecipitation(item.item[12].fcstValue);
         })
-            .catch(function(error) {
+            .catch((error)=> {
                 console.log(error);
             })
     }, []);

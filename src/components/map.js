@@ -1,3 +1,4 @@
+/*global kakao */
 import React, { useEffect } from 'react';
 import KakaoMapScript from "./kakaomapscript";
 import Header from './header';
@@ -11,14 +12,13 @@ export default function Map() {
     
     return (
         <div>
-            <Header />
-            <Nav />
+            <Header/>
+            <Nav/>
             <div id='myMap' style={{
                 width: '100vw',
-                height: '100vh'
-                }}>
+                height: '100vw'
+            }}>
             </div>
         </div>
-        
     );
 }

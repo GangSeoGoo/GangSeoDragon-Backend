@@ -5,29 +5,25 @@ const mysql = require("mysql");
 const app = express();
 const router = express.Router();
 
-
-//?궇?뵪 api 遺덈윭?삤湲? & ?봽濡좏듃濡? 蹂대궡湲?
+//날씨 데이터 가져오기
 app.use(cors())
-//?삤?뒛 ?궇吏?
 const today = new Date();
 const newmonth = today.getMonth()+1>10?String(today.getMonth()+1):String("0" +(today.getMonth()+1))
 const newdate = today.getDate()>10?today.getDate():String("0" + today.getDate());
 const newtoday = today.getFullYear() + newmonth + newdate;
 
-//蹂대룄?떆媛?
 const newhours = today.getHours()>9?today.getHours():"0"+today.getHours();
 const time = newhours-1 + '00';
 
 let url = `http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst?serviceKey=9abgPTEvn3jushxgXzWUK1%2BT6TJN%2Fny94tG5QnJ0hmlykMvQPmC3%2FaXeZUfAZF9zvX7DafAgDqO7ObzrMr0wbQ%3D%3D&numOfRows=36&pageNo=1&base_date=${newtoday}&base_time=${time}&nx=96&ny=76&dataType=JSON`;
-router.get('/api/weather', (req, response) => {
+router.get('/api/weather', (req, response) => { 
     request(url, (err, res, body)=>{
         if(err) console.log(err);
         else response.send(body)
     })
 });
 
-
-//mysql ?뿰?룞 & ?뜲?씠?꽣 ?봽濡좏듃濡? 蹂대궡?뒗 api
+//mysql 연동
 const con = mysql.createConnection({
     host: 'localhost',
     user: 'gangseodragon',
@@ -62,6 +58,16 @@ router.post('/api/postReview', (req, res)=>{
             throw err;
         }
         res.send('success');
+    })
+})
+router.get('/api/recommend', (req, res)=>{
+    const rsql2 = `select t.tourNum,t.tourName, avg(r.reviewStar) as 평균, t.outside from review r, tourlist t where t.tourNum = r.tourNum group by tourNum, outside order by 평균, t.tourNum limit 5`;
+    con.query(rsql2, (err, result, fiedls)=>{
+        if(err){
+            console.log(err);
+            throw err;
+        }
+        res.send(result);
     })
 })
 module.exports = router;

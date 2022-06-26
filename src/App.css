@@ -16,6 +16,10 @@ header{
     margin: 10px;
 }
 
+.logo:hover{
+    cursor: pointer;
+}
+
 nav{
     text-align: center;
     display: flex;
@@ -55,6 +59,8 @@ main{
 .wea--info{
     font-size: 8px;
 }
+
+
 .fruit--div{
     display: flex;
     width: 96%;
@@ -66,6 +72,7 @@ main{
 
 .fruit--content{
     text-align: left;
+    margin: 0;
 }
 
 .fruit--img{
@@ -79,4 +86,28 @@ main{
 
 .fruit--name{
     margin: 20px;
+    margin-left: 0;
+}
+
+.tourlist--name{
+    margin: 20px;
+    margin-left: 0;
+    font-weight: bold;
+}
+
+.sort{
+    display: flex;
+    justify-content: center;
+}
+
+.sort--btn{
+    width: 18em;
+    margin: 0.25em;
+    margin-top: 0.875em;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 0px solid;
+    height: 3.125em;
+    background-color: #29CD00;
+    color: white;
 }

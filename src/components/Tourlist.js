@@ -9,7 +9,12 @@ function Tourlist() {
     const [tourlist, setTourlist] = useState(null);
     const navigate = useNavigate();
 
-    useEffect(() => {
+    function setHTML(i){
+        // selEl.innerHTML += `<p>${tourlist[i].tourNum}</p>`
+        selEl.innerHTML += `<div class = "fruit--div"><img src="${tourlist[i].tourImage}" class="fruit--img"/><div class="fruit--content"><p class="tourlist--name">${tourlist[i].tourName}</p><p>${tourlist[i].tourExplain}</p></div></div>`
+    }
+
+    useEffect(()=>{
         axios.get('api/tourlist')
             .then(response => {
                 return response
@@ -17,42 +22,30 @@ function Tourlist() {
                 setTourlist(data.data);
             })
     }, [])
-
-    const timer = setTimeout(() => {
+    useEffect(()=>{
+        let timer = setTimeout(() => {
+            sortAll();
+        }, 100)
+    })
+    function sortAll(){
         selEl.innerHTML = "";
-        for (let i = 0; i < tourlist.length; i++) {
-            selEl.innerHTML += `<div id="tourNum" data-columns=${tourlist[i].tourNum}>
-                <p>${tourlist[i].tourNum}</p>
-                <p>${tourlist[i].tourName}</p>
-                <p>${tourlist[i].tourExplain}</p>
-                <img src="${tourlist[i].tourImage}" alt="icon" />
-            </div>`
+        for(let i=0;i<tourlist.length;i++) {
+            setHTML(i);
         }
-    }, 100);
-
-    function sortOut() {
+    }
+    function sortOut(){
         selEl.innerHTML = "";
-        for (let i = 0; i < tourlist.length; i++) {
-            if (tourlist[i].outside === 1) {
-                selEl.innerHTML += `<div id="tourNum" data-columns="${tourlist[i].tourNum}">
-                    <p>${tourlist[i].tourNum}</p>
-                    <p>${tourlist[i].tourName}</p>
-                    <p>${tourlist[i].tourExplain}</p>
-                    <img src="${tourlist[i].tourImage}" alt="icon" />
-                </div>`
+        for(let i=0;i<tourlist.length;i++){
+            if(tourlist[i].outside === 1){
+                setHTML(i);
             }
         }
     }
     function sortIn() {
         selEl.innerHTML = "";
-        for (let i = 0; i < tourlist.length; i++) {
-            if (tourlist[i].outside === 0) {
-                selEl.innerHTML += `<div id="tourNum" data-columns="${tourlist[i].tourNum}">
-                    <p>${tourlist[i].tourNum}</p>
-                    <p>${tourlist[i].tourName}</p>
-                    <p>${tourlist[i].tourExplain}</p>
-                    <img src="${tourlist[i].tourImage}" alt="icon" />
-                </div>`
+        for(let i=0;i<tourlist.length;i++){
+            if(tourlist[i].outside === 0){
+                setHTML(i);
             }
         }
     }
@@ -60,13 +53,11 @@ function Tourlist() {
         <div>
             <Header />
             <Nav />
-            <details>
-                <summary>정렬</summary>
-                <ul>
-                    <button onClick={sortOut}>실외</button>
-                    <button onClick={sortIn}>실내</button>
-                </ul>
-            </details>
+            <div className="sort">
+                <button onClick={sortAll} className="sort--btn">전체보기</button>
+                <button onClick={sortOut} className="sort--btn">실외</button>
+                <button onClick={sortIn} className="sort--btn">실내</button>
+            </div>
             <div className="innerdiv"></div>
         </div>
     )
