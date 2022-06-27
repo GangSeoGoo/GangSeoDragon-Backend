@@ -15,6 +15,8 @@ function Main(){
             .then((response)=> {
                 return response;
             }).then(data=>{
+                console.log(data);
+                console.log(data.data.response.body);
                 const item = data.data.response.body.items;
 
                 //날씨
@@ -62,7 +64,7 @@ function Main(){
                 <span className="wea--info">
                     기온 : {tepmerature}ºC<br/>
                     습도 : {humidity}%<br/>
-                    강수량 : {precipitation}mm<br/>
+                    강수량 : {precipitation}<br/>
                 </span>
                 </div>
             </main>

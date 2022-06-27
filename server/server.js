@@ -3,6 +3,8 @@ const app = express();
 const route = require('./routes/router')
 const path = require('path');
 
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname, '../build/')));
 app.get('/', (req, res)=>{
     res.sendFile(__dirname, '../build/index.html');

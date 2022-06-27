@@ -6,7 +6,7 @@ import Nav from './nav'
 function Recommend()
 {
     const [weather, setWeather] = useState();
-    let items;
+    const [recommend, setRecommend] = useState();
     
     useEffect(()=>{
         axios.get('/api/weather')
@@ -31,31 +31,34 @@ function Recommend()
         .then(response=>{
             return response;
         }).then(data=>{
-            items = data.data;
+            console.log(data.data);
+            setRecommend(data);
         })
     }, [])
 
     setTimeout(()=>{
-        for(let i=0;i<3;i++){
+        document.querySelector('.innerdiv').innerHTML = "";
+        for(let i=0;i<recommend.data.length;i++){
             console.log(weather);
+            console.log(recommend.data[i])
             if(weather==='맑음' || weather==='구름많음'){
-                if(items[i].outside === 1){
-                    document.querySelector('.innerdiv').innerHTML += `<p>${items[i].tourName}</p>`;
+                if(recommend.data[i].outside === 1){
+                    document.querySelector('.innerdiv').innerHTML += `<p>${recommend.data[i].tourName}</p>`;
                 }
             }
             else{
-               if(items[i].outside === 0) {
-                document.querySelector('.innerdiv').innerHTML += `<p>${items[i].tourName}</p>`;
+               if(recommend.data[i].outside === 0) {
+                document.querySelector('.innerdiv').innerHTML += `<p>${recommend.data[i].tourName}</p>`;
                }
             }  
         }
-    }, 1000)
+    }, 2000)
 
     return(
         <div className="recommend-rootdiv">   
             <Header/>
             <Nav/>
-            <h1>ㅎㅇ</h1>
+            <h1>날씨별 추천</h1>
             <div className="innerdiv"></div>
         </div>
     )

@@ -4,10 +4,10 @@ import Nav from "./nav";
 import Header from './header'
 
 function Review(){
-    const [reviewStar, setReviewStar] = useState(null);
+    const [reviewStar, setReviewStar] = useState(0);
     const [reviewText, setReviewText] = useState("");
     const [tourlist, setTourlist] = useState(null);
-    const [selected, setSelected] = useState(null);
+    const [selected, setSelected] = useState("");
 
     useEffect(() => {
         axios.get('api/tourlist')
@@ -18,13 +18,12 @@ function Review(){
             })
     }, [])
 
-    useEffect(()=>{
-        setTimeout(()=>{
+    setTimeout(()=>{    
+        document.querySelector('select').innerHTML = "";           
             for(let i=0;i<12;i++){
                 document.querySelector('select').innerHTML += `<option value="${tourlist[i].tourNum}">${tourlist[i].tourName}</option>`
             }
-        }, 200)
-    }, [])
+    }, 200)
 
     const postReview = () => {
         if(selected === null){
