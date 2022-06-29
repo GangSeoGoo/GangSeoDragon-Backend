@@ -1,9 +1,13 @@
+@font-face {
+    font-family: 'KOTRAHOPE';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRAHOPE.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100&display=swap');
-
 *{
     margin: 0 auto;
-    box-sizing: border-box;
-    font-family: 'Noto Sans', sans-serif;
+    box-sizing: border-box;font-family: 'KOTRAHOPE';
 }
 
 header{
@@ -31,6 +35,7 @@ a{
     color: #FFFFFF;
     border-left: 1px solid white;
     flex: 1;
+    font-family: 'KOTRAHOPE';
 }
 
 a:nth-child(1){
@@ -55,25 +60,40 @@ main{
 .wea--info{
     font-size: 8px;
 }
-<<<<<<< HEAD
 .iwBox {
+    padding-top: 20px;
     display: flex;
-    width: 200px;
-    height: 150px;
-    background-color: rgb(255, 255, 255);
-    border: 3px solid #000;
+    width: 400px;
+    height: auto;
     flex-direction: column;
     align-items: center;
-    box-sizing: border-box;
+}
+.contentBox {
+    width: 340px;
+    height: auto;
 }
 .iwTitle {
-    width: 194px;
-    border-bottom: 3px solid #000;
+    width: 100%;
+    font-weight: bold;
+    font-family: 'KOTRAHOPE';
+}
+.iwContent {
+    width: 100%;
+    font-size: 10px;
+    font-family: 'KOTRAHOPE';
+}
+.imgBox {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    width: 85%;
+    height: 60%;
+
 }
 .iwImage {
-    width: 194px;
-    height: 119px;
-=======
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
 .fruit--div{
     display: flex;
     width: 96%;
@@ -98,5 +118,4 @@ main{
 
 .fruit--name{
     margin: 20px;
->>>>>>> e3c037ebe5b4d8168549af7ba11a19accde4fa09
 }

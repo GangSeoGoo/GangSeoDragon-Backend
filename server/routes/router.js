@@ -27,7 +27,7 @@ router.get('/api/weather', (req, response) => {
 });
 
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 // //mysql 연동 & 데이터 프론트로 보내는 api
 // const con = mysql.createConnection({
 //     host: 'localhost',
@@ -52,7 +52,6 @@ router.get('/api/weather', (req, response) => {
 //         res.send(result);
 //     })
 // })
-=======
 //mysql 연동 & 데이터 프론트로 보내는 api
 const con = mysql.createConnection({
     host: '10.150.149.114',
@@ -77,5 +76,5 @@ router.get('/api/tourlist', (req, res)=>{
         res.send(result);
     })
 })
->>>>>>> e3c037ebe5b4d8168549af7ba11a19accde4fa09
+//>>>>>>> e3c037ebe5b4d8168549af7ba11a19accde4fa09
 module.exports = router;
