@@ -1,16 +1,15 @@
-/*global kakao */
+/* global kakao */
 import markerData from "./markerData"; // 임의로 만든 데이터파일 불러오기
-
 export default function KakaoMapScript() {
   const container = document.getElementById('myMap');
 
   const options = {
     center: new kakao.maps.LatLng(35.150369020443875, 128.87847858651804),
-    level: 7
+    level: 8
   };
   const map = new kakao.maps.Map(container, options);
   markerData.forEach((el) => {  
-    const markerPosition = new kakao.maps.LatLng(el.lat, el.lng); // 마커가 표시될 위치
+    const markerPosition = new kakao.maps.LatLng(el.latitude, el.longitude); // 마커가 표시될 위치
 
     // 마커를 생성합니다
     let marker = new kakao.maps.Marker({
@@ -24,15 +23,19 @@ export default function KakaoMapScript() {
     // infowindow 내부 형태 정의
     const iwContent = `
       <div class="iwBox">
-        <h4 class="iwTitle">${el.title}</h4>
-        <img class="iwImage" src=${el.image} alt="사진"/>
+        <div class="contentBox>
+          <h4 class="iwTitle">${el.tourName}</h4>
+          <p class="iwContent">${el.tourExplain}</p>
+        </div>
+        <div class="imgBox">
+          <img class="iwImage" src=${el.tourImage} alt="사진"/>
+        </div>
       </div>
     `;
 
     // 마커에 표시할 인포윈도우를 생성함
     const infowindow = new kakao.maps.InfoWindow({
       content: iwContent, // 인포윈도우에 표시할 내용
-      removable: true,
     });
     // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록
     // 이벤트 리스너로는 클로저를 만들어 등록

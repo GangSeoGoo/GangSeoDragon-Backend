@@ -17,6 +17,7 @@ console.log(newhours)
 const time = newhours + '00';
 
 let url = `http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst?serviceKey=9abgPTEvn3jushxgXzWUK1%2BT6TJN%2Fny94tG5QnJ0hmlykMvQPmC3%2FaXeZUfAZF9zvX7DafAgDqO7ObzrMr0wbQ%3D%3D&numOfRows=36&pageNo=1&base_date=${newtoday}&base_time=${time}&nx=96&ny=76&dataType=JSON`;
+console.log(url);
 router.get('/api/weather', (req, response) => { 
     request(url, (err, res, body)=>{
         if(err) console.log(err);

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Nav from "./nav";
 import Header from './header'
+import "../styleComponents/review.css";
 
 function Review(){
     const [reviewStar, setReviewStar] = useState(0);
@@ -57,13 +58,22 @@ function Review(){
         <div>
             <Header/>
             <Nav/>
-            <h1>리뷰 작성</h1>
-            <select onChange={(e)=>{ setSelected(e.target.value) }}>
-                <option value={"null"}>관광지 선택</option>
-            </select>
-            <input type="number" onChange={(e)=>{ setReviewStar(e.target.value) }} min="1" max="5" />
-            <textarea placeholder="여기에 리뷰를 작성해주세요." onChange={(e)=>{ setReviewText(e.target.value) }}/>
-            <button onClick={postReview}>리뷰 남기기</button>
+            <div id="review">
+                <div className="rvBox">
+                    <div className="rvTourName">
+                        <p>관광지 명</p>
+                        <select className="rvTourSelect" onChange={(e)=>{ setSelected(e.target.value)}}>
+                            <option value={"null"}>관광지 선택</option>
+                        </select>
+                    </div>
+                    <div className="rvReviewStar">
+                        <p>별점</p>
+                        <input className="rvInput" type="number" onChange={(e)=>{ setReviewStar(e.target.value) }} min="1" max="5" />
+                    </div>
+                    <textarea className="rvText" placeholder="여기에 리뷰를 작성해주세요." onChange={(e)=>{ setReviewText(e.target.value) }}/>
+                    <button className="rvButton" onClick={postReview}>리뷰 남기기</button> 
+                </div>
+            </div>
         </div>
     );
 }

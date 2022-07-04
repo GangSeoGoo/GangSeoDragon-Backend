@@ -5,6 +5,7 @@ import Nav from './nav'
 
 function Recommend()
 {
+    const [on, setOn] = useState(false);
     const [weather, setWeather] = useState();
     const [recommend, setRecommend] = useState();
     
@@ -24,30 +25,31 @@ function Recommend()
                 else if(item.item[18].fcstValue==="4") setWeather("흐림");
             }
         })
-    }, [])
-
-    useEffect(()=>{
         axios.get('/api/recommend')
         .then(response=>{
             return response;
         }).then(data=>{
             console.log(data.data);
-            setRecommend(data);
+            setRecommend(data.data);
         })
     }, [])
 
     setTimeout(()=>{
+        setOn(true);
+    }, 500);
+
+    setTimeout(()=>{
         document.querySelector('.innerdiv').innerHTML = "";
-        for(let i=0;i<recommend.data.length;i++){
+        for(let i=0;i<recommend.length;i++){
             console.log(weather);
-            console.log(recommend.data[i])
-            if(weather==='맑음' || weather==='구름많음'){
-                if(recommend.data[i].outside === 1){
-                    document.querySelector('.innerdiv').innerHTML += `<p>${recommend.data[i].tourName}</p>`;
+            console.log(recommend[i])
+            if(weather==="맑음" || weather==="구름많음"){
+                if(recommend[i].outside === 1){
+                    document.querySelector('.innerdiv').innerHTML += `<p>${recommend[i].tourName}</p>`;
                 }
             }
             else{
-               if(recommend.data[i].outside === 0) {
+               if(recommend[i].outside === 0) {
                 document.querySelector('.innerdiv').innerHTML += `<p>${recommend.data[i].tourName}</p>`;
                }
             }  
@@ -55,11 +57,17 @@ function Recommend()
     }, 2000)
 
     return(
-        <div className="recommend-rootdiv">   
+        <div>
             <Header/>
             <Nav/>
-            <h1>날씨별 추천</h1>
-            <div className="innerdiv"></div>
+            {on ? 
+                <div className="recommend-rootdiv">   
+                    <h1>날씨별 추천</h1>
+                    <div className="innerdiv"></div>
+                </div> 
+            : 
+                <div><h1>날씨 데이터를 받아오는 중...</h1></div>
+        }
         </div>
     )
 }

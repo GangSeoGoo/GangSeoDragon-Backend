@@ -1,0 +1,63 @@
+#review {
+    width: 600px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #31f300;
+    margin-top: 100px;
+}
+  .rvBox {
+    padding: 30px;
+    width: 500px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #a4ff80;
+  }
+  .rvTourSelect {
+    width: 200px;
+    height: 30px;
+    font-size: 15px;
+    text-align: center;
+    border: none;
+    box-sizing: border-box;
+    border: 2px solid #24b600;
+  }
+  .rvInput {
+    width: 60px;
+    height: 30px;
+    font-size: 15px;
+    text-align: center;
+    box-sizing: border-box;
+    border: 2px solid #24b600;
+  }
+  .rvText {
+    width: 430px;
+    height: 250px;
+    margin: 20px;
+    color: black;
+    border: 2px solid #24b600;
+    box-sizing: border-box;
+  }
+  .rvText::placeholder {
+    color: black;
+  }
+  .rvButton {
+    width: 430px;
+    height: 50px;
+    color: black;
+    font-size: 20px;
+    border: 2px solid #24b600;
+  }
+  .rvButton:hover {
+    background-color: #24b600;
+    border: 2px solid #31f300;
+    transition: 0.7s;
+  }
+.rvTourName{
+  color: black;
+}
+.rvReviewStar{
+  color: black;
+}
