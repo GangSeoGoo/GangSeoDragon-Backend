@@ -111,3 +111,37 @@ main{
     background-color: #29CD00;
     color: white;
 }
+.iwBox {
+    padding-top: 20px;
+    display: flex;
+    width: 400px;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+}
+.contentBox {
+    width: 340px;
+    height: auto;
+}
+.iwTitle {
+    width: 100%;
+    font-weight: bold;
+    font-family: 'KOTRAHOPE';
+}
+.iwContent {
+    width: 100%;
+    font-size: 9px;
+    font-family: 'KOTRAHOPE';
+}
+.imgBox {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    width: 85%;
+    height: 60%;
+
+}
+.iwImage {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}

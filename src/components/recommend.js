@@ -45,16 +45,17 @@ function Recommend()
             console.log(recommend[i])
             if(weather==="맑음" || weather==="구름많음"){
                 if(recommend[i].outside === 1){
-                    document.querySelector('.innerdiv').innerHTML += `<p>${recommend[i].tourName}</p>`;
+                    document.querySelector('.innerdiv').innerHTML += 
+                    `<div class = "fruit--div"><img src="${recommend[i].tourImage}" class="fruit--img"/><div class="fruit--content"><p class="tourlist--name">${recommend[i].tourName}</p><p>${recommend[i].tourExplain}</p><p>${recommend[i].rvavg}</p></div></div>`;
                 }
             }
             else{
                if(recommend[i].outside === 0) {
-                document.querySelector('.innerdiv').innerHTML += `<p>${recommend.data[i].tourName}</p>`;
+                document.querySelector('.innerdiv').innerHTML += `<div class = "fruit--div"><img src="${recommend[i].tourImage}" class="fruit--img"/><div class="fruit--content"><p class="tourlist--name">${recommend[i].tourName}</p><p>${recommend[i].tourExplain}</p><p>${recommend[i].rvavg}</p></div></div>`;
                }
             }  
         }
-    }, 2000)
+    }, 600);
 
     return(
         <div>

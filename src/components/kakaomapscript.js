@@ -1,5 +1,6 @@
 /* global kakao */
 import markerData from "./markerData"; // 임의로 만든 데이터파일 불러오기
+import "../App.js";
 export default function KakaoMapScript() {
   const container = document.getElementById('myMap');
 

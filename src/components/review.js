@@ -48,6 +48,7 @@ function Review(){
                 return response;
             }).then(data => {
                 console.log(data.data);
+                alert('성공하셨습니다');
             }).catch((error)=>{
                 console.log(error);
             })

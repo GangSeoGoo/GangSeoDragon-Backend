@@ -12,7 +12,7 @@ const newmonth = today.getMonth()+1>10?String(today.getMonth()+1):String("0" +(t
 const newdate = today.getDate()>10?today.getDate():String("0" + today.getDate());
 const newtoday = today.getFullYear() + newmonth + newdate;
 
-const newhours = today.getHours()>9?today.getHours()-1:"0"+today.getHours()-1;
+const newhours = today.getHours()>9?today.getHours()-1:"0"+(today.getHours()-1);
 console.log(newhours)
 const time = newhours + '00';
 
@@ -64,7 +64,7 @@ router.post('/api/postReview', (req, res)=>{
     })
 })
 router.get('/api/recommend', (req, res)=>{
-    const rsql2 = `select t.tourNum,t.tourName, avg(r.reviewStar) as 평균, t.outside from review r, tourlist t where t.tourNum = r.tourNum group by tourNum, outside order by 평균, t.tourNum`;
+    const rsql2 = `select t.tourNum,t.tourName, avg(r.reviewStar) as rvavg, t.outside, t.tourImage, t.tourExplain from review r, tourlist t where t.tourNum = r.tourNum group by tourNum, outside order by 평균, t.tourNum`;
     con.query(rsql2, (err, result, fiedls)=>{
         if(err){
             console.log(err);
