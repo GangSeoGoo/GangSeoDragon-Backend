@@ -4,20 +4,27 @@ import '../styleComponents/modal.css';
 const Modal = (props) => {
     
     const review = props.review;
-    console.log(review);
-    
+
     useEffect(()=>{
-        document.querySelector('.modal').innerHTML = "";
-        document.querySelector('.modal').innerHTML = `<p>${review[0].tourName}</p><img src=${review[0].tourImage} alt="icon"/>`;
-        for(let i=0;i<review.length;i++){
-            document.querySelector('.modal').innerHTML += `<p>${review[i].reviewStar}</p><p>${review[i].reviewText}</p>`
+        const init = () => {
+            document.querySelector('.modal').innerHTML = "";
         }
-    }, [review]);
+        init();
+        document.querySelector('.modal').innerHTML += `<button class='modal-exit'>X</button>`;
+        for(let i=0;i<review.length;i++){
+            let star = '★'.repeat(review[i].reviewStar);
+            star += '☆'.repeat(5-review[i].reviewStar);
+            document.querySelector('.modal').innerHTML += `<div class='modal--review--div'><p class='modal--review--text'>${review[i].reviewText}</p><p><span class='modal--review--star'>${star} </span>${review[i].reviewStar}</p></div>`
+        }
+        const modalel = document.querySelector('.modal-exit');
+        modalel.addEventListener("click", function(){props.close()});
+    }, [])
     
 
     return(
         <div className='root-modal'>
-            <div className="modal"></div>
+            <div className="modal">
+            </div>
         </div>
     )
 }

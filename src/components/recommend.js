@@ -67,14 +67,29 @@ function Recommend()
     setTimeout(()=>{
         document.querySelector('.innerdiv').innerHTML = "";
         for(let i=0;i<recommend.length;i++){
+            let star = '★'.repeat(recommend[i].rvavg);
+            star += '☆'.repeat(5-recommend[i].rvavg);
             document.querySelector('.innerdiv').innerHTML += 
-            `<div class="fruit--div" data-columns="${recommend[i].tourNum}"><img src="${recommend[i].tourImage}" class="fruit--img"/><div class="fruit--content"><p class="tourlist--name">${recommend[i].tourName}</p><p>${recommend[i].tourExplain}</p><p>${recommend[i].rvavg}</p></div></div>`;
+            `<div class="fruit--div" data-columns="${recommend[i].tourNum}">
+                    <img src="${recommend[i].tourImage}" class="fruit--img"/>
+                    <div class="fruit--content">
+                    <p class="tourlist--name">${recommend[i].tourName}</p>
+                    <p>${recommend[i].tourExplain}</p>
+                    <p><span>${star}</span> ${recommend[i].rvavg}</p>
+                    <button class="review--btn">리뷰 보기</button>
+                </div>
+            </div>`;
         }
+        const reviewBtn = document.querySelectorAll(".review--btn");
         const el = document.querySelectorAll('.fruit--div');
         for(let i=0;i<el.length;i++){
-            el[i].addEventListener('click', function(){getReview(el[i])});
+            reviewBtn[i].addEventListener('click', function(){getReview(el[i])});
         }
     }, 600);
+
+    const closeModal = () => {
+        setModal(false);
+      };
 
     return(
         <div>
@@ -90,7 +105,7 @@ function Recommend()
                         </div>
                     </div>
                     <div className="innerdiv"></div>
-                    {modal ? <Modal review={review} /> : <></>}
+                    {modal ? <Modal review={review} close={closeModal}/> : <></>}
                 </div> 
             : 
                 <div className="reco-wea"><span className="reco-loading">날씨 데이터를 받아오는 중...</span></div>

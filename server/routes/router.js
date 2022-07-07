@@ -27,7 +27,7 @@ router.get('/api/weather', (req, response) => {
 
 //mysql 연동
 const con = mysql.createConnection({
-    host: 'localhost',
+    host: '10.150.149.114',
     user: 'gangseodragon',
     password: 'gangseodragon',
     database: 'GangSeo_Dragon'
@@ -63,13 +63,12 @@ router.post('/api/postReview', (req, res)=>{
 router.get('/api/recommend', (req, res)=>{
     const data = req.query.out;
     console.log(req.query);
-    const rsql2 = `select t.tourNum, t.tourName, avg(r.reviewStar) as rvavg, t.tourImage, t.tourExplain from review r, tourlist t where t.tourNum = r.tourNum and t.outside = ${data} group by tourNum, outside, tourName, tourImage, tourExplain order by rvavg DESC, t.tourNum`;
+    const rsql2 = `select t.tourNum, t.tourName, round(avg(r.reviewStar)) as rvavg, t.tourImage, t.tourExplain from review r, tourlist t where t.tourNum = r.tourNum and t.outside = ${data} group by tourNum, outside, tourName, tourImage, tourExplain order by rvavg DESC, t.tourNum`;
     con.query(rsql2, (err, result, fields)=>{
         if(err){
             console.log(err);
         }
         else {
-            console.log(result);
             res.send(result);
         }
     })
@@ -80,7 +79,6 @@ router.get('/api/getReview', (req, res)=>{
     con.query(getR, (err, result, fields)=>{
         if(err) console.log(err);
         else {
-            console.log(result);
             res.send(result);
         }
     })
