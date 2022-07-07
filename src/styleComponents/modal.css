@@ -1,0 +1,21 @@
+.modal{
+    background-color: #d3d3d3;
+    width: 600px;
+    height: 550px;
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    top: 200px;
+    margin-top: 30px;
+}
+.root-modal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal-image{
+    align-items: center;
+    width: 70%;
+    height: 50%;
+}

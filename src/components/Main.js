@@ -56,10 +56,10 @@ function Main(){
         <div>
             <Header/>
             <Nav/>
-            <main>
+            <main className="wea--main">
                 <h2 className="wea--title">지금 강서구는...</h2><br/>
                 <img src={icon} className="wea--icon" alt={"profile"}/><br/>
-                {weather}
+                <span className="wea-wea">{weather}</span>
                 <div>
                 <span className="wea--info">
                     기온 : {tepmerature}ºC<br/>

@@ -12,7 +12,7 @@ const newmonth = today.getMonth()+1>10?String(today.getMonth()+1):String("0" +(t
 const newdate = today.getDate()>10?today.getDate():String("0" + today.getDate());
 const newtoday = today.getFullYear() + newmonth + newdate;
 
-const newhours = today.getHours()>9?today.getHours()-1:"0"+(today.getHours()-1);
+const newhours = today.getHours()>10?today.getHours()-1:"0"+(today.getHours()-1);
 console.log(newhours)
 const time = newhours + '00';
 
@@ -35,18 +35,16 @@ const con = mysql.createConnection({
 con.connect(err => {
     if(err) {
         console.log(err);
-        throw err;
     }
-    console.log('success');
+    else console.log('success');
 })
 router.get('/api/tourlist', (req, res)=>{
     const sql = 'select * from tourlist order by tourNum';
     con.query(sql, (err, result, fields)=>{
         if(err){
             console.log(err);
-            throw err;
         }
-        res.send(result);
+        else res.send(result);
     })
 })
 router.post('/api/postReview', (req, res)=>{
@@ -58,19 +56,33 @@ router.post('/api/postReview', (req, res)=>{
     con.query(inSql, (err, result, fields)=>{
          if(err){
             console.log(err);
-            throw err;
         }
-        res.send('success');
+        else res.send('success');
     })
 })
 router.get('/api/recommend', (req, res)=>{
-    const rsql2 = `select t.tourNum,t.tourName, avg(r.reviewStar) as rvavg, t.outside, t.tourImage, t.tourExplain from review r, tourlist t where t.tourNum = r.tourNum group by tourNum, outside order by 평균, t.tourNum`;
-    con.query(rsql2, (err, result, fiedls)=>{
+    const data = req.query.out;
+    console.log(req.query);
+    const rsql2 = `select t.tourNum, t.tourName, avg(r.reviewStar) as rvavg, t.tourImage, t.tourExplain from review r, tourlist t where t.tourNum = r.tourNum and t.outside = ${data} group by tourNum, outside, tourName, tourImage, tourExplain order by rvavg DESC, t.tourNum`;
+    con.query(rsql2, (err, result, fields)=>{
         if(err){
             console.log(err);
-            throw err;
         }
-        res.send(result);
+        else {
+            console.log(result);
+            res.send(result);
+        }
+    })
+})
+router.get('/api/getReview', (req, res)=>{
+    const data = req.query.num;
+    const getR = `select t.tourImage, t.tourName, r.reviewStar, r.reviewText from review r, tourlist t where t.tourNum = ${data} and r.tourNum = t.tourNum group by tourImage, tourName, reviewStar, reviewText order by reviewDate;`
+    con.query(getR, (err, result, fields)=>{
+        if(err) console.log(err);
+        else {
+            console.log(result);
+            res.send(result);
+        }
     })
 })
 module.exports = router;

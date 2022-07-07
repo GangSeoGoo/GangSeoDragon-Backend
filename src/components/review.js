@@ -3,12 +3,15 @@ import { useState, useEffect } from "react";
 import Nav from "./nav";
 import Header from './header'
 import "../styleComponents/review.css";
+import { useNavigate } from 'react-router-dom';
 
 function Review(){
-    const [reviewStar, setReviewStar] = useState(0);
-    const [reviewText, setReviewText] = useState("");
     const [tourlist, setTourlist] = useState(null);
-    const [selected, setSelected] = useState("");
+    const nav = useNavigate();
+
+    let selected = '1';
+    let reviewStar;
+    let reviewText;
 
     useEffect(() => {
         axios.get('api/tourlist')
@@ -49,6 +52,7 @@ function Review(){
             }).then(data => {
                 console.log(data.data);
                 alert('성공하셨습니다');
+                nav('/');
             }).catch((error)=>{
                 console.log(error);
             })
@@ -63,15 +67,15 @@ function Review(){
                 <div className="rvBox">
                     <div className="rvTourName">
                         <p>관광지 명</p>
-                        <select className="rvTourSelect" onChange={(e)=>{ setSelected(e.target.value)}}>
+                        <select className="rvTourSelect" onChange={(e)=>{ selected = e.target.value}}>
                             <option value={"null"}>관광지 선택</option>
                         </select>
                     </div>
                     <div className="rvReviewStar">
                         <p>별점</p>
-                        <input className="rvInput" type="number" onChange={(e)=>{ setReviewStar(e.target.value) }} min="1" max="5" />
+                        <input className="rvInput" type="number" onChange={(e)=>{ reviewStar = e.target.value }} min="1" max="5" />
                     </div>
-                    <textarea className="rvText" placeholder="여기에 리뷰를 작성해주세요." onChange={(e)=>{ setReviewText(e.target.value) }}/>
+                    <textarea className="rvText" placeholder="여기에 리뷰를 작성해주세요." onChange={(e)=>{ reviewText = e.target.value }}/>
                     <button className="rvButton" onClick={postReview}>리뷰 남기기</button> 
                 </div>
             </div>

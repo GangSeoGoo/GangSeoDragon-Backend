@@ -106,5 +106,14 @@ export default [
     tourExplain: '부산광역시 강서구 명지국제8로 287 오성빌딩 2F에 위치한 피자집입니다. 피자가 맛있습니다.',
     tourImage: 'https://mp-seoul-image-production-s3.mangoplate.com/added_restaurants/645111_1477028351106342.jpg?fit=around|359:240&crop=359:240;*,*&output-format=jpg&output-quality=80',
     outside: 0
+  },
+  {
+    tourNum: 13,
+    tourName: '부산소마고',
+    latitude: 35.1887725,
+    longitude: 128.9034629,
+    tourExplain: '부산광역시 강서구 가락대로에 위치한 고등학교입니다. 창의 융합형 인재를 양성하기 위한 최적의 교육 인프라이며, 최고의 학생 교육활동이 지원된다. 부산소마고는 강서구의 꽃이라고 볼 수 있으며, 강서구의 자랑이다.',
+    tourImage: 'https://cdn.kqnews.kr/news/photo/202203/3174_6257_25.jpg',
+    outside: 0
   }
 ]

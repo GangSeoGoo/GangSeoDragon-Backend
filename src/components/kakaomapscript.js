@@ -5,10 +5,11 @@ export default function KakaoMapScript() {
   const container = document.getElementById('myMap');
 
   const options = {
-    center: new kakao.maps.LatLng(35.150369020443875, 128.87847858651804),
-    level: 8
+    center: new kakao.maps.LatLng(35.185348, 128.903660),
+    level: 3
   };
   const map = new kakao.maps.Map(container, options);
+
   markerData.forEach((el) => {  
     const markerPosition = new kakao.maps.LatLng(el.latitude, el.longitude); // 마커가 표시될 위치
 

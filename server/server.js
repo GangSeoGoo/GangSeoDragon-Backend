@@ -13,6 +13,7 @@ app.get('/api/weather', route);
 app.get('/api/tourlist', route);
 app.post('/api/postReview', route);
 app.get('/api/recommend', route);
+app.get('/api/getReview', route);
 
 app.listen(3000, ()=>{
     console.log(`express is running on 3000port`);
