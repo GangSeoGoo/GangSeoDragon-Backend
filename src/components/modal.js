@@ -10,7 +10,7 @@ const Modal = (props) => {
             document.querySelector('.modal').innerHTML = "";
         }
         init();
-        document.querySelector('.modal').innerHTML += `<button class='modal-exit'>X</button>`;
+        document.querySelector('.modal').innerHTML += `<button class='modal-exit'><span>X</span></button>`;
         for(let i=0;i<review.length;i++){
             let star = '★'.repeat(review[i].reviewStar);
             star += '☆'.repeat(5-review[i].reviewStar);

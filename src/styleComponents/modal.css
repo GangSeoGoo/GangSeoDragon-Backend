@@ -35,8 +35,13 @@
     background-color: white;
     border-radius: 5px;
     border: 0.2px solid black;
-    position: fixed;
-    right: 35em;
+}
+.modal-exit > span{
+    font-weight: bold;
+}
+.modal-exit:hover{
+    background-color: red;
+    color: white;
 }
 .modal--review--div{
     width: 100%;

@@ -124,18 +124,19 @@ a:nth-child(1){
     height: auto;
     flex-direction: column;
     align-items: center;
+
 }
 .contentBox {
     width: 340px;
     height: auto;
 }
 .iwTitle {
-    width: 100%;
+    width: 340px;
     font-weight: bold;
     font-family: 'KOTRAHOPE';
 }
 .iwContent {
-    width: 100%;
+    width: 340px;
     font-size: 9px;
     font-family: 'KOTRAHOPE';
 }

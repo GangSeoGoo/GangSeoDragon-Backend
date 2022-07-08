@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Header from "./header";
 import Nav from './nav'
 import Modal from './modal';
+import '../styleComponents/recommned.css';
 
 function Recommend()
 {
