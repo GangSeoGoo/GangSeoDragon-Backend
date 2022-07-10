@@ -9,7 +9,7 @@ const router = express.Router();
 app.use(cors())
 const today = new Date();
 const newmonth = today.getMonth()+1>10?String(today.getMonth()+1):String("0" +(today.getMonth()+1))
-const newdate = today.getDate()>10?today.getDate():String("0" + today.getDate());
+const newdate = today.getDate()>9 ? today.getDate() : String("0" + today.getDate());
 const newtoday = today.getFullYear() + newmonth + newdate;
 
 const newhours = today.getHours()>10?today.getHours()-1:"0"+(today.getHours()-1);
